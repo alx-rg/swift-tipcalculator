@@ -54,6 +54,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // 1
         billAmountTextField.calculateButtonAction = {
+            
+            
+            if self.billAmountTextField.isFirstResponder {
+                self.billAmountTextField.resignFirstResponder()
+            }
+            
             guard let billAmountText = self.billAmountTextField.text,
                 let billAmount = Double(billAmountText) else {
                 return
@@ -64,9 +70,12 @@ class ViewController: UIViewController {
             let tipPercent = 0.15
             let tipAmount = roundedBillAmount * tipPercent
             let roundedTipAmount = (100 * tipAmount).rounded() / 100
+            
+            let totalAmount = roundedBillAmount + roundedTipAmount
 
             print("Bill Amount: \(roundedBillAmount)")
             print("Tip Amount: \(roundedTipAmount)")
+            print("Total Amount: \(totalAmount)")
         }
     }
 }
