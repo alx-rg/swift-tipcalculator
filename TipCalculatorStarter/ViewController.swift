@@ -45,7 +45,15 @@ class ViewController: UIViewController {
     
 
     @IBAction func resetButtonTapped(_ sender: UIButton) {
-        print("reset button tapped")
+        clear()
+    }
+    
+    func clear () {
+        billAmountTextField = nil
+        tipPercentSegmentedControl.selectedSegmentIndex = 0
+        tipAmountLabel.text = String("$0.00")
+        totalAmountLabel.text = String("$0.00")
+        
     }
     
     func calculate() {
@@ -56,6 +64,7 @@ class ViewController: UIViewController {
 
         guard let billAmountText = self.billAmountTextField.text,
             let billAmount = Double(billAmountText) else {
+                clear()
                 return
         }
 
