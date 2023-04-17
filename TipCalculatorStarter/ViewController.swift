@@ -60,8 +60,13 @@ class ViewController: UIViewController {
             }
 
             let roundedBillAmount = (100 * billAmount).rounded() / 100
+            
+            let tipPercent = 0.15
+            let tipAmount = roundedBillAmount * tipPercent
+            let roundedTipAmount = (100 * tipAmount).rounded() / 100
 
             print("Bill Amount: \(roundedBillAmount)")
+            print("Tip Amount: \(roundedTipAmount)")
         }
     }
 }
