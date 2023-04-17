@@ -6,7 +6,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -35,7 +34,7 @@
                                         </connections>
                                     </switch>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemTealColor"/>
+                                <color key="backgroundColor" name="tcHotPink"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="85" id="ByJ-bp-JrA"/>
                                     <constraint firstItem="AQr-WS-luH" firstAttribute="centerY" secondItem="uae-ci-apE" secondAttribute="centerY" id="Wl9-P3-hM9"/>
@@ -82,6 +81,7 @@
                                                     </label>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="NRr-ya-58H">
                                                         <rect key="frame" x="128" y="0.0" width="173" height="32"/>
+                                                        <color key="backgroundColor" name="tcSeafoamGreen"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="173" id="W2w-d9-b9W"/>
                                                         </constraints>
@@ -244,8 +244,5 @@
         <namedColor name="tcWhite">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemTealColor">
-            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
     </resources>
 </document>
