@@ -27,15 +27,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var totalAmountTitleLabel: UILabel!
     @IBOutlet weak var totalAmountLabel: UILabel!
     
-    
     @IBOutlet weak var resetButton: UIButton!
     
     // MARK : IBActions
     @IBAction func themeToggled(_ sender: UISwitch) {
         if sender.isOn {
-            print("switch toggled on")
+            setTheme(isDark: sender.isOn)
         } else {
-            print("switch off")
+            setTheme(isDark: false)
         }
     }
     
@@ -48,25 +47,10 @@ class ViewController: UIViewController {
         clear()
     }
     
-    func setupViews() {
-        // to control the layers
-        headerView.layer.shadowOffset = CGSize(width: 0, height: 1)
-        headerView.layer.shadowOpacity = 0.05
-        headerView.layer.shadowColor = UIColor.black.cgColor
-        headerView.layer.shadowRadius = 35
-        
-        inputCardView.layer.cornerRadius = 8
-        inputCardView.layer.masksToBounds = true
-        
-        outputCardView.layer.cornerRadius = 8
-        outputCardView.layer.masksToBounds = true
-        outputCardView.layer.borderWidth = 1
-        outputCardView.layer.borderColor = UIColor.tcHotPink.cgColor
-        
-        resetButton.layer.cornerRadius = 8
-        resetButton.layer.masksToBounds = true
-        
-        
+    var isDefaultStatusBar = true
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return isDefaultStatusBar ? .default : .lightContent
     }
     
     func clear () {
@@ -114,12 +98,61 @@ class ViewController: UIViewController {
         self.tipAmountLabel.text = String(format: "%.2f", roundedTipAmount)
         self.totalAmountLabel.text = String(format: "%.2f", totalAmount)
     }
+    
+    func setupViews() {
+        // to control the layers
+        headerView.layer.shadowOffset = CGSize(width: 0, height: 1)
+        headerView.layer.shadowOpacity = 0.05
+        headerView.layer.shadowColor = UIColor.black.cgColor
+        headerView.layer.shadowRadius = 35
+        
+        inputCardView.layer.cornerRadius = 8
+        inputCardView.layer.masksToBounds = true
+        
+        outputCardView.layer.cornerRadius = 8
+        outputCardView.layer.masksToBounds = true
+        outputCardView.layer.borderWidth = 1
+        outputCardView.layer.borderColor = UIColor.tcHotPink.cgColor
+        
+        resetButton.layer.cornerRadius = 8
+        resetButton.layer.masksToBounds = true
+    }
+    
+    func setTheme(isDark: Bool) {
+        let theme = isDark ? ColorTheme.dark : ColorTheme.light
+        
+        view.backgroundColor = theme.viewControllerBackgroundColor
+        
+        headerView.backgroundColor = theme.primaryColor
+        titleLabel.textColor = theme.primaryTextColor
+        
+        inputCardView.backgroundColor = theme.secondaryColor
+        
+        billAmountTextField.tintColor = theme.accentColor
+        tipPercentSegmentedControl.tintColor = theme.accentColor
+
+        outputCardView.backgroundColor = theme.primaryColor
+        outputCardView.layer.borderColor = theme.accentColor.cgColor
+
+        tipAmountTitleLabel.textColor = theme.primaryTextColor
+        totalAmountTitleLabel.textColor = theme.primaryTextColor
+
+        tipAmountLabel.textColor = theme.outputTextColor
+        totalAmountLabel.textColor = theme.outputTextColor
+
+        resetButton.backgroundColor = theme.secondaryColor
+        
+        isDefaultStatusBar = theme.isDefaultStatusBar
+        setNeedsStatusBarAppearanceUpdate()
+    }
+    
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupViews()
+        setTheme(isDark: false)
 
         billAmountTextField.calculateButtonAction = {
             self.calculate()
