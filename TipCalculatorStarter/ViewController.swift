@@ -48,8 +48,29 @@ class ViewController: UIViewController {
         clear()
     }
     
+    func setupViews() {
+        // to control the layers
+        headerView.layer.shadowOffset = CGSize(width: 0, height: 1)
+        headerView.layer.shadowOpacity = 0.05
+        headerView.layer.shadowColor = UIColor.black.cgColor
+        headerView.layer.shadowRadius = 35
+        
+        inputCardView.layer.cornerRadius = 8
+        inputCardView.layer.masksToBounds = true
+        
+        outputCardView.layer.cornerRadius = 8
+        outputCardView.layer.masksToBounds = true
+        outputCardView.layer.borderWidth = 1
+        outputCardView.layer.borderColor = UIColor.tcHotPink.cgColor
+        
+        resetButton.layer.cornerRadius = 8
+        resetButton.layer.masksToBounds = true
+        
+        
+    }
+    
     func clear () {
-        billAmountTextField = nil
+        billAmountTextField.text = ""
         tipPercentSegmentedControl.selectedSegmentIndex = 0
         tipAmountLabel.text = String("$0.00")
         totalAmountLabel.text = String("$0.00")
@@ -97,6 +118,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupViews()
 
         billAmountTextField.calculateButtonAction = {
             self.calculate()
